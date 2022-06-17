@@ -16,6 +16,7 @@ $altura = 1.9;
 $imc = $peso / ($altura ** 2);
 
 
+//DECLARANDO E ATRIBUINDO AS CONDIÇÕES
 $abaixoDoPeso = $imc < 18.5;
 $pesoNormal = $imc >= 18.5 && $imc < 25;
 $sobrepeso = $imc >= 25 && $imc < 30;
