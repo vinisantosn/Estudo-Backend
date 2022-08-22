@@ -30,12 +30,11 @@ $contaDois = new ContaPoupanca(new Titular(
         '15A'
     )
 ));
-$contaTeste->deposita(500);
 try {
-    $contaTeste->saca(600);
-}catch (\Alura\Banco\Modelo\Conta\SaldoInsuficienteException $exception){
-    echo $exception->getMessage();
+    $contaTeste->deposita(-100);
+} catch (InvalidArgumentException $exception){
+    echo "N deu ";
 }
 
-var_dump($contaTeste);
+
 

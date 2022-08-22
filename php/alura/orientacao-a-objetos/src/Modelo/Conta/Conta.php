@@ -3,6 +3,8 @@
 namespace Alura\Banco\Modelo\Conta;
 
 
+use http\Exception\InvalidArgumentException;
+
 abstract class Conta
 {
 
@@ -33,8 +35,7 @@ abstract class Conta
         $tarifaDeSaque = $valorDeSaque * $this->percentualTarifa() ;
         $valorDeSaqueComTarifa = $valorDeSaque + $tarifaDeSaque;
         if ($valorDeSaqueComTarifa > $this->saldo) {
-            echo "Saldo Indisponivel";
-            return;
+            throw new SaldoInsuficienteException($valorDeSaqueComTarifa, $this->saldo);
         }
         $this->saldo -= $valorDeSaqueComTarifa;
 
@@ -43,8 +44,7 @@ abstract class Conta
     public function deposita(float $valorDeDeposito): void
     {
         if ($valorDeDeposito < 0) {
-            echo "Valor invalido";
-            return;
+            throw new InvalidArgumentException();
         }
 
         $this->saldo += $valorDeDeposito;
